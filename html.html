@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel del Instructor · ENI SENA</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/operativo.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <i class="bi bi-mortarboard-fill"></i>
+    <span>ENI <small>Instructor</small></span>
+  </div>
+  <nav class="nav flex-column">
+    <a class="nav-link active" data-view="inicio"><i class="bi bi-house-door"></i> Inicio</a>
+    <a class="nav-link" data-view="catalogo"><i class="bi bi-search"></i> Catálogo</a>
+    <a class="nav-link" data-view="mis-inscripciones"><i class="bi bi-clipboard-check"></i> Mis inscripciones</a>
+    <a class="nav-link" data-view="ruta"><i class="bi bi-signpost-split"></i> Mi ruta formativa</a>
+    <a class="nav-link" data-view="certificados"><i class="bi bi-award"></i> Certificados</a>
+    <a class="nav-link" data-view="perfil"><i class="bi bi-person-badge"></i> Mi perfil</a>
+    <hr>
+    <a class="nav-link text-danger" href="index.html"><i class="bi bi-box-arrow-left"></i> Salir al sitio</a>
+  </nav>
+</aside>
+
+<!-- Contenido -->
+<main class="main-content">
+  <header class="topbar-admin">
+    <button class="btn btn-light d-lg-none" onclick="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+    <h4 class="mb-0" id="viewTitle">Inicio</h4>
+    <div class="ms-auto d-flex align-items-center gap-3">
+      <span class="badge-rol" id="rolBadge">—</span>
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle"></i> <span id="userName">Instructor</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#" onclick="irA('perfil')"><i class="bi bi-person"></i> Mi perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bloqueo por rol -->
+  <div id="accesoDenegado" class="alert alert-warning m-4 d-none">
+    <h5><i class="bi bi-shield-exclamation"></i> Acceso restringido</h5>
+    <p class="mb-0">Este panel requiere rol <strong>Operativo</strong>. Tu rol actual es <strong id="rolActual"></strong>.</p>
+    <a href="index.html" class="btn btn-sena mt-3">Volver al inicio</a>
+  </div>
+
+  <div id="panelContent" class="d-none">
+
+    <!-- INICIO -->
+    <section class="view" id="view-inicio">
+      <!-- Bienvenida -->
+      <div class="welcome-card mb-4">
+        <div>
+          <h4 class="fw-bold mb-1">Hola, <span id="nombreInstructor">Instructor</span> 👋</h4>
+          <p class="mb-0 text-white-50">
+            Este es tu espacio de formación ENI. Revisa tu ruta, inscríbete y descarga tus certificados.
+          </p>
+        </div>
+        <div class="welcome-avatar">
+          <i class="bi bi-person-workspace"></i>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="icon bg-verde"><i class="bi bi-journal-check"></i></div>
+            <div><span class="num" id="kpiInscritas">0</span><small>Inscritas</small></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="icon bg-azul"><i class="bi bi-hourglass-split"></i></div>
+            <div><span class="num" id="kpiPendientes">0</span><small>Pendientes</small></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="icon bg-morado"><i class="bi bi-award"></i></div>
+            <div><span class="num" id="kpiCertificados">0</span><small>Certificados</small></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="icon bg-naranja"><i class="bi bi-clock-history"></i></div>
+            <div><span class="num" id="kpiHoras">0</span><small>Horas acumuladas</small></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recomendadas + próximas -->
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="card-box">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="fw-bold mb-0"><i class="bi bi-stars text-success"></i> Recomendadas para ti</h6>
+              <a href="#" class="small text-success" onclick="irA('catalogo')">Ver todas</a>
+            </div>
+            <div id="recomendadas" class="row g-3"></div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card-box">
+            <h6 class="fw-bold mb-3"><i class="bi bi-calendar-event text-primary"></i> Actividad reciente</h6>
+            <ul class="timeline" id="timeline"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="view d-none" id="view-catalogo">
+      <div class="card-box">
+        <div class="row g-3 mb-3">
+          <div class="col-md-4">
+            <input id="buscarCurso" class="form-control" placeholder="🔍 Buscar capacitación...">
+          </div>
+          <div class="col-md-3">
+            <select id="filtroTemaOp" class="form-select">
+              <option value="">Todas las temáticas</option>
+              <option>Tecnologías de la Información</option>
+              <option>Gestión Empresarial</option>
+              <option>Salud y Seguridad</option>
+              <option>Pedagogía y Didáctica</option>
+              <option>Idiomas</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select id="filtroModOp" class="form-select">
+              <option value="">Toda modalidad</option>
+              <option>Presencial</option><option>Virtual</option><option>Mixta</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select id="filtroNivelOp" class="form-select">
+              <option value="">Nivel</option>
+              <option>Básico</option><option>Intermedio</option><option>Avanzado</option>
+            </select>
+          </div>
+        </div>
+        <div id="gridCatalogo" class="row g-3"></div>
+        <p id="sinCursos" class="text-center text-muted mt-4 d-none">No hay capacitaciones que coincidan con los filtros.</p>
+      </div>
+    </section>
+
+    <!-- MIS INSCRIPCIONES -->
+    <section class="view d-none" id="view-mis-inscripciones">
+      <div class="card-box">
+        <h6 class="fw-bold mb-3">Mis inscripciones</h6>
+        <div class="table-responsive">
+          <table id="tablaMisInscripciones" class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>#</th><th>Capacitación</th><th>Temática</th>
+                <th>Modalidad</th><th>Horas</th><th>Fecha</th><th>Estado</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- RUTA FORMATIVA -->
+    <section class="view d-none" id="view-ruta">
+      <div class="card-box">
+        <h6 class="fw-bold mb-4">Mi ruta formativa</h6>
+        <div class="ruta-progress mb-4">
+          <div class="progress" style="height:14px;border-radius:8px;">
+            <div id="progressRuta" class="progress-bar bg-success" style="width:0%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted mt-2">
+            <span>Avance</span>
+            <span id="progressTexto">0%</span>
+          </div>
+        </div>
+        <div class="ruta-timeline" id="rutaTimeline"></div>
+      </div>
+    </section>
+
+    <!-- CERTIFICADOS -->
+    <section class="view d-none" id="view-certificados">
+      <div class="card-box">
+        <h6 class="fw-bold mb-3">Mis certificados</h6>
+        <div id="gridCertificados" class="row g-3"></div>
+        <p id="sinCertificados" class="text-center text-muted mt-4 d-none">
+          Aún no tienes certificados. Completa tus capacitaciones aprobadas para generarlos.
+        </p>
+      </div>
+    </section>
+
+    <!-- PERFIL -->
+    <section class="view d-none" id="view-perfil">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card-box text-center">
+            <div class="perfil-avatar mx-auto mb-3">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <h5 class="fw-bold mb-1" id="perfilNombre">Instructor</h5>
+            <p class="text-muted small mb-2" id="perfilCorreo">correo@sena.edu.co</p>
+            <span class="badge bg-success" id="perfilTipo">Planta</span>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card-box">
+            <h6 class="fw-bold mb-3">Datos personales</h6>
+            <form id="formPerfil">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Documento</label>
+                  <input class="form-control" id="perfilDoc" disabled>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nombre completo</label>
+                  <input class="form-control" id="perfilNombreInput">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Correo</label>
+                  <input type="email" class="form-control" id="perfilCorreoInput">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Teléfono</label>
+                  <input class="form-control" id="perfilTel">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Área profesional</label>
+                  <select class="form-select" id="perfilArea">
+                    <option>Tecnologías de la Información</option>
+                    <option>Gestión Empresarial</option>
+                    <option>Salud y Seguridad</option>
+                    <option>Pedagogía y Didáctica</option>
+                    <option>Idiomas</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Tipo de vinculación</label>
+                  <select class="form-select" id="perfilTipoInput">
+                    <option>Planta</option><option>Provisional</option>
+                  </select>
+                </div>
+                <div class="col-12 text-end">
+                  <button class="btn btn-sena"><i class="bi bi-save"></i> Guardar cambios</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  function login(rol){
+    localStorage.setItem('eni_rol', rol);
+    if(rol === 'Administrativo'){
+      window.location.href = 'admin.html';
+      return;
+    }
+    if(rol === 'Operativo'){
+      window.location.href = 'operativo.html';
+      return;
+    }
+    bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+    actualizarSesion();
+  }
+</script>
+</body>
+</html>
