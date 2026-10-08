@@ -12,7 +12,6 @@
 </head>
 <body>
 
-<!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
   <div class="brand">
     <i class="bi bi-mortarboard-fill"></i>
@@ -30,7 +29,6 @@
   </nav>
 </aside>
 
-<!-- Contenido -->
 <main class="main-content">
   <header class="topbar-admin">
     <button class="btn btn-light d-lg-none" onclick="toggleSidebar()">
@@ -52,7 +50,6 @@
     </div>
   </header>
 
-  <!-- Bloqueo por rol -->
   <div id="accesoDenegado" class="alert alert-warning m-4 d-none">
     <h5><i class="bi bi-shield-exclamation"></i> Acceso restringido</h5>
     <p class="mb-0">Este panel requiere rol <strong>Operativo</strong>. Tu rol actual es <strong id="rolActual"></strong>.</p>
@@ -61,9 +58,7 @@
 
   <div id="panelContent" class="d-none">
 
-    <!-- INICIO -->
     <section class="view" id="view-inicio">
-      <!-- Bienvenida -->
       <div class="welcome-card mb-4">
         <div>
           <h4 class="fw-bold mb-1">Hola, <span id="nombreInstructor">Instructor</span> 👋</h4>
@@ -76,7 +71,6 @@
         </div>
       </div>
 
-      <!-- KPIs -->
       <div class="row g-3 mb-4">
         <div class="col-6 col-md-3">
           <div class="stat-card">
@@ -104,7 +98,6 @@
         </div>
       </div>
 
-      <!-- Recomendadas + próximas -->
       <div class="row g-3">
         <div class="col-lg-7">
           <div class="card-box">
@@ -124,7 +117,6 @@
       </div>
     </section>
 
-    <!-- CATÁLOGO -->
     <section class="view d-none" id="view-catalogo">
       <div class="card-box">
         <div class="row g-3 mb-3">
@@ -159,7 +151,6 @@
       </div>
     </section>
 
-    <!-- MIS INSCRIPCIONES -->
     <section class="view d-none" id="view-mis-inscripciones">
       <div class="card-box">
         <h6 class="fw-bold mb-3">Mis inscripciones</h6>
@@ -177,7 +168,6 @@
       </div>
     </section>
 
-    <!-- RUTA FORMATIVA -->
     <section class="view d-none" id="view-ruta">
       <div class="card-box">
         <h6 class="fw-bold mb-4">Mi ruta formativa</h6>
@@ -194,7 +184,6 @@
       </div>
     </section>
 
-    <!-- CERTIFICADOS -->
     <section class="view d-none" id="view-certificados">
       <div class="card-box">
         <h6 class="fw-bold mb-3">Mis certificados</h6>
@@ -205,7 +194,6 @@
       </div>
     </section>
 
-    <!-- PERFIL -->
     <section class="view d-none" id="view-perfil">
       <div class="row g-4">
         <div class="col-lg-4">
@@ -264,27 +252,31 @@
         </div>
       </div>
     </section>
+
   </div>
 </main>
 
+<div class="modal fade" id="modalDetalle" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalleTitulo">Detalle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="detalleBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button class="btn btn-sena" id="btnInscribir">Inscribirme</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  function login(rol){
-    localStorage.setItem('eni_rol', rol);
-    if(rol === 'Administrativo'){
-      window.location.href = 'admin.html';
-      return;
-    }
-    if(rol === 'Operativo'){
-      window.location.href = 'operativo.html';
-      return;
-    }
-    bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
-    actualizarSesion();
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/operativo.js"></script>
 </body>
 </html>
