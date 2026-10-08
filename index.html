@@ -8,58 +8,59 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <style>
   :root{
-    --sena-verde:#39A900;
-    --sena-verde-osc:#2d8600;
-    --sena-verde-suave:#eaf7e2;
-    --sena-gris:#F6F8F7;
-    --sena-gris-2:#eef3ef;
-    --sena-texto:#1f2b22;
-    --sena-sombra:0 20px 40px rgba(26, 54, 32, 0.12);
-    --sena-glass:rgba(255,255,255,0.12);
+    --sena-forest:#153c31;
+    --sena-forest-2:#0f2d27;
+    --sena-green:#1c684e;
+    --sena-green-soft:#dfeee7;
+    --sena-gold:#d7b86a;
+    --sena-gold-soft:#f4ebd3;
+    --sena-ivory:#f7f3ee;
+    --sena-ink:#1f2b22;
+    --sena-muted:#586860;
+    --sena-line:rgba(21,60,49,.12);
+    --sena-shadow:0 22px 40px rgba(14, 29, 24, 0.12);
   }
-  body{font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--sena-texto);background:radial-gradient(circle at top, #f8fbf8 0%, #f0f5f1 38%, #edf2ee 100%);}
-  .topbar{background:linear-gradient(90deg,#1d2d25,#182823 60%,#1a312b);color:#dfeae4;font-size:.82rem;box-shadow:inset 0 -1px 0 rgba(255,255,255,.06);}
-  .topbar a{color:#dfeae4;text-decoration:none;}
-  .navbar-sena{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(57,169,0,.1);box-shadow:0 8px 25px rgba(22,40,28,.05);}
-  .navbar-sena .navbar-brand span{font-weight:800;color:var(--sena-verde);letter-spacing:-.03em;}
-  .navbar-sena .nav-link{color:#33443a;font-weight:600;transition:.2s ease;}
-  .navbar-sena .nav-link:hover{color:var(--sena-verde);transform:translateY(-1px);}
+  body{font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--sena-ink);background:linear-gradient(180deg,#f8f3ee 0%, #f3f5f1 40%, #eef2ee 100%);}
+  .topbar{background:linear-gradient(90deg,#0f1f1c,#162f2a 56%,#183a33);color:#edf2f1;font-size:.82rem;box-shadow:inset 0 -1px 0 rgba(255,255,255,.06);}
+  .topbar a{color:#edf2f1;text-decoration:none;}
+  .navbar-sena{background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(21,60,49,.08);box-shadow:0 8px 24px rgba(17,31,28,.04);}
+  .navbar-sena .navbar-brand span{font-weight:800;color:var(--sena-green);letter-spacing:-.03em;}
+  .navbar-sena .nav-link{color:#2d3d38;font-weight:600;transition:.2s ease;}
+  .navbar-sena .nav-link:hover{color:var(--sena-green);transform:translateY(-1px);}
   .hero{
-    background:linear-gradient(120deg,#1c8f00 0%,var(--sena-verde) 27%,#2e8a46 65%,var(--sena-verde-osc) 100%);
+    background:linear-gradient(130deg,#0f2c26 0%, var(--sena-forest) 26%, var(--sena-green) 58%, #1d5d4a 100%);
     color:#fff;padding:78px 0 72px;position:relative;overflow:hidden;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
   }
   .hero::before{
-    content:"";position:absolute;right:-80px;top:-100px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.10);filter:blur(10px);
-  }
+    content:"";position:absolute;right:-90px;top:-110px;width:430px;height:430px;border-radius:50%;background:linear-gradient(180deg, rgba(215,184,106,.22), rgba(255,255,255,.05));filter:blur(10px);}
   .hero::after{
-    content:"";position:absolute;left:-120px;bottom:-150px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.06);filter:blur(8px);
-  }
-  .hero h1{font-weight:800;line-height:1.08;letter-spacing:-.04em;}
-  .hero .lead{max-width:620px;color:rgba(255,255,255,.92);}
-  .hero .badge-soft{background:var(--sena-glass);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(5px);}
-  .btn-sena{background:linear-gradient(135deg,#39A900,#2d8600);color:#fff;font-weight:700;border:none;box-shadow:0 16px 24px rgba(57,169,0,.25);transition:.2s ease;}
-  .btn-sena:hover{background:linear-gradient(135deg,#2ea600,#227d00);color:#fff;transform:translateY(-1px);box-shadow:0 18px 28px rgba(57,169,0,.3);}
+    content:"";position:absolute;left:-120px;bottom:-180px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.05);filter:blur(10px);}
+  .hero h1{font-weight:800;line-height:1.08;letter-spacing:-.05em;}
+  .hero .lead{max-width:640px;color:rgba(255,255,255,.9);}
+  .hero .badge-soft{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(5px);color:#fff;}
+  .btn-sena{background:linear-gradient(135deg,var(--sena-gold),#c39b4e);color:#1a261e;font-weight:800;border:none;box-shadow:0 16px 26px rgba(215,184,106,.25);transition:.2s ease;}
+  .btn-sena:hover{background:linear-gradient(135deg,#dcbf7a,#bc9744);color:#122018;transform:translateY(-1px);box-shadow:0 18px 30px rgba(215,184,106,.3);}
   .btn-outline-sena{border:2px solid rgba(255,255,255,.7);color:#fff;font-weight:700;background:rgba(255,255,255,.04);}
-  .btn-outline-sena:hover{background:#fff;color:var(--sena-verde-osc);}
+  .btn-outline-sena:hover{background:#fff;color:var(--sena-green);}
   .section{padding:68px 0;}
-  .section-alt{background:linear-gradient(180deg,#f6faf7,#eef5f0);}
-  .card-curso{border:1px solid rgba(24,32,28,.05);border-radius:20px;transition:.25s;height:100%;background:linear-gradient(180deg,#fff 0%, #fbfdfb 100%);box-shadow:0 14px 30px rgba(24,32,28,.05);padding:1.25rem;}
-  .card-curso:hover{transform:translateY(-6px);box-shadow:0 22px 35px rgba(0,0,0,.08);border-color:rgba(57,169,0,.5);}
-  .chip{background:var(--sena-verde-suave);color:var(--sena-verde-osc);font-size:.72rem;font-weight:700;
-        padding:.3rem .7rem;border-radius:999px;letter-spacing:.02em;}
-  .chip-gris{background:#eef1ef;color:#51615d;font-size:.72rem;font-weight:700;
-        padding:.3rem .7rem;border-radius:999px;letter-spacing:.02em;}
-  .role-card{border-radius:20px;border:1px solid rgba(57,169,0,.08);cursor:pointer;transition:.2s;background:linear-gradient(180deg,#fff 0%, #f9fbf9 100%);box-shadow:0 18px 35px rgba(24,32,28,.04);padding:1.5rem;}
-  .role-card:hover{border-color:rgba(57,169,0,.5);transform:translateY(-4px);box-shadow:var(--sena-sombra);}
-  .role-card.active{border-color:rgba(57,169,0,.7);background:linear-gradient(180deg,#f8fff3 0%, #f1faeb 100%);}
+  .section-alt{background:linear-gradient(180deg,#f8f7f5,#f0f3f1);}
+  .card-curso{border:1px solid var(--sena-line);border-radius:20px;transition:.25s;height:100%;background:linear-gradient(180deg,#fff 0%, #fcfbfa 100%);box-shadow:0 18px 32px rgba(18,30,27,.04);padding:1.25rem;}
+  .card-curso:hover{transform:translateY(-6px);box-shadow:0 24px 40px rgba(12,29,24,.09);border-color:rgba(28,104,78,.35);}
+  .chip{background:var(--sena-green-soft);color:var(--sena-green);font-size:.72rem;font-weight:800;
+        padding:.35rem .7rem;border-radius:999px;letter-spacing:.02em;}
+  .chip-gris{background:#edf1ee;color:#51615d;font-size:.72rem;font-weight:700;
+        padding:.35rem .7rem;border-radius:999px;letter-spacing:.02em;}
+  .role-card{border-radius:22px;border:1px solid rgba(21,60,49,.08);cursor:pointer;transition:.2s;background:linear-gradient(180deg,#fff 0%, #fafaf8 100%);box-shadow:0 18px 35px rgba(18,30,27,.04);padding:1.5rem;}
+  .role-card:hover{border-color:rgba(21,60,49,.35);transform:translateY(-4px);box-shadow:var(--sena-shadow);}
+  .role-card.active{border-color:rgba(21,60,49,.4);background:linear-gradient(180deg,#f5f9f5 0%, #edf7f0 100%);}
   .icon-circle{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
-    background:linear-gradient(135deg,#efffe8,#dff5d6);color:var(--sena-verde-osc);font-size:1.5rem;box-shadow:inset 0 0 0 1px rgba(57,169,0,.08);}
-  .form-control, .form-select{border:1px solid rgba(21,32,26,.12);border-radius:12px;padding:.72rem .9rem;background:#fff;box-shadow:none;}
-  .form-control:focus, .form-select:focus{border-color:rgba(57,169,0,.55);box-shadow:0 0 0 .2rem rgba(57,169,0,.12);}
-  .bg-white.rounded-4.p-4.shadow{background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,250,247,.98)) !important; border:1px solid rgba(255,255,255,.3); box-shadow:0 24px 44px rgba(20,42,18,.12) !important; backdrop-filter:blur(6px);}
-  footer{background:linear-gradient(180deg,#1b2d25,#14241d 80%);color:#c9d3cc;padding:45px 0 20px;font-size:.9rem;}
-  footer a{color:#c9d3cc;text-decoration:none;}
+    background:linear-gradient(135deg,#edf8ef,#dfeee7);color:var(--sena-green);font-size:1.55rem;box-shadow:inset 0 0 0 1px rgba(28,104,78,.08);}
+  .form-control, .form-select{border:1px solid rgba(21,60,49,.12);border-radius:12px;padding:.72rem .9rem;background:#fff;box-shadow:none;}
+  .form-control:focus, .form-select:focus{border-color:rgba(28,104,78,.5);box-shadow:0 0 0 .2rem rgba(28,104,78,.12);}
+  .bg-white.rounded-4.p-4.shadow{background:linear-gradient(180deg, rgba(255,255,255,.99), rgba(248,244,240,.97)) !important; border:1px solid rgba(21,60,49,.06); box-shadow:0 24px 44px rgba(17,31,28,.12) !important; backdrop-filter:blur(6px);}
+  footer{background:linear-gradient(180deg,#0e201b,#0b1816 80%);color:#dfe8e5;padding:45px 0 20px;font-size:.9rem;}
+  footer a{color:#dfe8e5;text-decoration:none;}
   footer a:hover{color:#fff;}
   .lock-banner{display:none;}
 </style>
@@ -81,7 +82,7 @@
 <nav class="navbar navbar-expand-lg navbar-sena sticky-top py-3">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-      <i class="bi bi-mortarboard-fill fs-3" style="color:var(--sena-verde)"></i>
+      <i class="bi bi-mortarboard-fill fs-3" style="color:var(--sena-green)"></i>
       <span>ENI <small class="text-muted fw-normal">| SENA</small></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
@@ -136,11 +137,11 @@
         </div>
       </div>
       <div class="col-lg-5">
-        <div class="bg-white rounded-4 p-4 shadow" style="color:var(--sena-texto)">
-          <h5 class="fw-bold mb-3"><i class="bi bi-people-fill" style="color:var(--sena-verde)"></i> Niveles de acceso</h5>
+        <div class="bg-white rounded-4 p-4 shadow" style="color:var(--sena-ink)">
+          <h5 class="fw-bold mb-3"><i class="bi bi-people-fill" style="color:var(--sena-green)"></i> Niveles de acceso</h5>
           <ul class="list-unstyled mb-0 small">
             <li class="mb-2"><i class="bi bi-shield-lock-fill text-success"></i> <strong>Administrativo:</strong> crear, editar y publicar capacitaciones.</li>
-            <li class="mb-2"><i class="bi bi-tools" style="color:var(--sena-verde)"></i> <strong>Operativo:</strong> inscribirse y gestionar su ruta formativa.</li>
+            <li class="mb-2"><i class="bi bi-tools" style="color:var(--sena-green)"></i> <strong>Operativo:</strong> inscribirse y gestionar su ruta formativa.</li>
             <li><i class="bi bi-search"></i> <strong>Consulta:</strong> explorar la oferta sin autenticación.</li>
           </ul>
         </div>
@@ -298,9 +299,9 @@
         <h2 class="fw-bold mb-3">¿Necesitas apoyo?</h2>
         <p class="text-muted">Escríbenos y el equipo ENI te orientará según tu perfil y rol.</p>
         <ul class="list-unstyled">
-          <li class="mb-2"><i class="bi bi-geo-alt-fill" style="color:var(--sena-verde)"></i> Dirección General SENA · Bogotá D.C.</li>
-          <li class="mb-2"><i class="bi bi-envelope-fill" style="color:var(--sena-verde)"></i> eni@sena.edu.co</li>
-          <li><i class="bi bi-telephone-fill" style="color:var(--sena-verde)"></i> 601 546 1500</li>
+          <li class="mb-2"><i class="bi bi-geo-alt-fill" style="color:var(--sena-green)"></i> Dirección General SENA · Bogotá D.C.</li>
+          <li class="mb-2"><i class="bi bi-envelope-fill" style="color:var(--sena-green)"></i> eni@sena.edu.co</li>
+          <li><i class="bi bi-telephone-fill" style="color:var(--sena-green)"></i> 601 546 1500</li>
         </ul>
       </div>
       <div class="col-lg-6">
